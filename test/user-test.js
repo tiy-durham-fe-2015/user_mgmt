@@ -6,6 +6,18 @@ qunitUtils.throwsException('spec is required', User);
 
 qunitUtils.requireSpecStrings(['firstName', 'lastName', 'email'], User, makeUser)
 
+QUnit.test('user constructor can take roles', function (assert) {
+  var user = User({
+    firstName: 'Chris',
+    lastName: 'Davies',
+    email: 'foo@bar.com',
+    roles: ['admin', 'user']
+  });
+
+  assert.ok(user.isInRole('user'));
+  assert.ok(user.isInRole('admin'));
+});
+
 QUnit.test('users with the same email should be equal', function (assert) {
   var user1 = makeUser(),
     user2 = makeUser('Joe', 'Shmo', 'js@example.com');
