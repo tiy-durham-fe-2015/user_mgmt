@@ -1,3 +1,5 @@
+// ObjectStore is a reusable store for objects that implement
+// the 'euqal' function
 function ObjectStore() {
   var objects = [],
     store = {

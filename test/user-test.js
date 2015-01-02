@@ -1,6 +1,11 @@
 /*
   Unit tests for the User class.
 */
+
+qunitUtils.throwsException('spec is required', User);
+
+qunitUtils.requireSpecStrings(['firstName', 'lastName', 'email'], User, makeUser)
+
 QUnit.test('users with the same email should be equal', function (assert) {
   var user1 = makeUser(),
     user2 = makeUser('Joe', 'Shmo', 'js@example.com');
@@ -29,26 +34,4 @@ QUnit.test('duplicate adds behave like a single add', function (assert) {
 
   user.removeRole(role);
   assert.ok(!user.isInRole(role));
-});
-
-QUnit.test('multiple roles are supported', function (assert) {
-  var user = makeUser(),
-    role1 = 'admin',
-    role2 = 'student';
-
-  user.addRole(role1);
-  user.addRole(role2);
-
-  assert.ok(user.isInRole(role1));
-  assert.ok(user.isInRole(role2));
-
-  user.removeRole(role1);
-
-  assert.ok(!user.isInRole(role1));
-  assert.ok(user.isInRole(role2));
-});
-
-QUnit.test('fullName returns the users full name', function (assert) {
-  var user = makeUser('Chris', 'Davies');
-  assert.equal(user.fullName(), 'Chris Davies');
 });

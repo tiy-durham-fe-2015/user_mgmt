@@ -1,31 +1,53 @@
 /**
  * User - constructs a new user object
  *
- * Users have the following properties:
- * - firstName
- * - lastName
- * - email
- *
- * Users have the following methods:
- *
- * - fullName() - returns the full name (first and last name)
- *
- * - addRole(roleName) - adds the specified role to the user
- *
- * - removeRole(roleName) - removes the specified role from the user
- *
- * - isInRole(roleName) - returns true if the user is in the specified role
- *
- * @param  {object} spec - an object with a firstName, lastName, and email
+ * @param  {object} spec - an object with a firstName, lastName, email, and optinally roles
  *
  * @return {user}
  */
 function User(spec) {
-  // userRoles is a hash-table of roles
-  var userRoles = { },
+
+  validate();
+
+  return construct();
+
+  // Validate the spec
+  function validate() {
+    requireSpec();
+    requireString('firstName');
+    requireString('lastName');
+    requireString('email');
+  }
+
+  // Test to see if the spec has a string property with the given name
+  function requireString(propertyName) {
+    if (!spec[propertyName] || !spec[propertyName].trim()) {
+      throw { err: 'User: ' + propertyName + ' is required.' };
+    }
+  }
+
+  // Test to see if spec is not undefined
+  function requireSpec() {
+    if (!spec) {
+      throw { err: 'User: spec is a required argument.' };
+    }
+  }
+
+  // Build up an object with role properties
+  function makeRolesObject() {
+    return (spec.roles || []).reduce(function (hash, role) {
+      hash[role] = true;
+      return hash;
+    }, { });
+  }
+
+  // Construct a new user object
+  function construct() {
+    // userRoles is the set of roles
+    var userRoles = makeRolesObject();
 
     // user is the new user object
-    user = {
+    var user = {
       firstName: spec.firstName,
 
       lastName: spec.lastName,
@@ -53,5 +75,7 @@ function User(spec) {
       }
     };
 
-  return user;
+    return user;
+  }
+
 }
