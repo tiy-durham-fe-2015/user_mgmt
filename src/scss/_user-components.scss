@@ -1,8 +1,9 @@
 .users-list-item {
   background: #F5F5F5;
   border: 1px solid #EEE;
-  padding: 1em;
+  padding: 1em 1.5em 1em 1em;
   margin-bottom: 0.5em;
+  position: relative;
 
   &:after {
     content: ' ';
@@ -17,5 +18,15 @@
 
   .email {
     float: right;
+  }
+
+  .remove-user {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    color: inherit;
+    opacity: 0.5;
+    padding: 0.5em;
   }
 }

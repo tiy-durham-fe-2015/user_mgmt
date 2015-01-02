@@ -3,9 +3,9 @@
 */
 
 (function () {
-  var users = UserStore();
-
-  var userEditForm = document.querySelector('form.edit-user');
+  var users = UserStore(),
+    userEditForm = document.querySelector('form.edit-user'),
+    usersList = document.querySelector('.users-list');
 
   function escapeHTML(str) {
     var tagsToReplace = {
@@ -51,11 +51,16 @@
         '<span class="first-name">' + escapeHTML(user.firstName) + '</span>' +
         '<span class="last-name">' + escapeHTML(user.lastName) + '</span>' +
         '<span class="email">' + escapeHTML(user.email) + '</span>' +
+        '<a class="remove-user" href="#" data-email="' + escapeHTML(user.email) + '">X</a>' +
         '</li>';
     }
 
     document.querySelector('.users-list').innerHTML =
       users.query().sort(compareEmails).map(userToListItem).join('');
+  }
+
+  function removeUser(email) {
+    users.remove(User({ email: email }));
   }
 
   userEditForm.onsubmit = function (e) {
@@ -64,6 +69,15 @@
     clearInputs(userEditForm);
 
     return false;
+  };
+
+  usersList.onclick = function (e) {
+    if (e.target.classList.contains('remove-user')) {
+      removeUser(e.target.dataset.email);
+      redrawUsers();
+      
+      return false;
+    }
   };
 
 })();
