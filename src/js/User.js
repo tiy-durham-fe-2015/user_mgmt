@@ -8,6 +8,8 @@
  *
  * Users have the following methods:
  *
+ * - fullName() - returns the full name (first and last name)
+ *
  * - addRole(roleName) - adds the specified role to the user
  *
  * - removeRole(roleName) - removes the specified role from the user

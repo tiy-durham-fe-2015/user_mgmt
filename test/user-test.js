@@ -47,3 +47,8 @@ QUnit.test('multiple roles are supported', function (assert) {
   assert.ok(!user.isInRole(role1));
   assert.ok(user.isInRole(role2));
 });
+
+QUnit.test('fullName returns the users full name', function (assert) {
+  var user = makeUser('Chris', 'Davies');
+  assert.equal(user.fullName(), 'Chris Davies');
+});
