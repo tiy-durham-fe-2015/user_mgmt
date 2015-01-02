@@ -25,6 +25,19 @@ function UserStore() {
     });
   };
 
+  // findByEmail returns the user with the specified email
+  users.findByEmail = function (email) {
+    var result;
+
+    users.query().some(function (user) {
+      if (user.email === email) {
+        result = user;
+      }
+    });
+
+    return result;  
+  };
+
   // emailDomain returns the domain portion of an email
   function emailDomain(email) {
     return email.split('@')[1];

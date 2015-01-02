@@ -42,6 +42,10 @@
     });
   }
 
+  function focusFirstInput(form) {
+    form.querySelector('input').focus();
+  }
+
   // Redraw the users list
   function redrawUsers() {
     function userToListItem(user) {
@@ -73,7 +77,7 @@
 
   // Remove user by email
   function removeUserByEmail(email) {
-    users.remove(User({ email: email }));
+    users.remove(users.findByEmail(email));
   }
 
   // Events /////////////////////////////////////////
@@ -83,8 +87,9 @@
     if (addUserFromForm(userEditForm)) {
       redrawUsers();
       clearInputs(userEditForm);
+      focusFirstInput(userEditForm);
     }
-    
+
     return false;
   };
 
