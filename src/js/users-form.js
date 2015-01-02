@@ -1,0 +1,38 @@
+// The UI component that handles inputing a user
+function UsersForm(form, usersStore, usersUpdated) {
+
+  // Handle adding a user
+  form.onsubmit = function (e) {
+    if (usersStore.add(toUser())) {
+      clearInputs();
+      focusFirstInput();
+      usersUpdated();
+    }
+
+    return false;
+  };
+
+  // Extract the form inputs into a user object
+  function toUser() {
+    var userSpec = {
+      firstName: form.querySelector('.first-name').value,
+      lastName: form.querySelector('.last-name').value,
+      email: form.querySelector('.email').value
+    };
+
+    return User(userSpec);
+  }
+
+  // Clear the form inputs
+  function clearInputs() {
+    htmlUtils.eachNode(form.querySelectorAll('input, textarea'), function (node) {
+      node.value = '';
+    });
+  }
+
+  // Focus the first input
+  function focusFirstInput() {
+    form.querySelector('input').focus();
+  }
+
+}
