@@ -5,7 +5,8 @@
   var users = UserStore(),
     userEditForm = document.querySelector('form.edit-user'),
     usersList = document.querySelector('.users-list'),
-    sortOrder = 1;
+    sortOrder = 1,
+    usersSearchTerm = '';
 
   function escapeHTML(str) {
     var tagsToReplace = {
@@ -26,7 +27,7 @@
       email: form.querySelector('.email').value
     };
 
-    users.add(User(userSpec));
+    return users.add(User(userSpec));
   }
 
   function eachNode(nodes, callback) {
@@ -52,12 +53,22 @@
         '</li>';
     }
 
-    function compareUserEmails(user1, user2) {
-      return (user1.email > user2.email) ? sortOrder : -sortOrder;
+    function compareUserNames(user1, user2) {
+      return (user1.fullName() > user2.fullName()) ? sortOrder : -sortOrder;
+    }
+
+    function contains(str, subString) {
+      return (str || '').toLowerCase().indexOf(subString.toLowerCase()) >= 0;
+    }
+
+    function usersFilter(user) {
+      return contains(user.firstName, usersSearchTerm) ||
+        contains(user.lastName, usersSearchTerm) ||
+        contains(user.email, usersSearchTerm);
     }
 
     document.querySelector('.users-list').innerHTML =
-      users.query().sort(compareUserEmails).map(userToListItem).join('');
+      users.query().filter(usersFilter).sort(compareUserNames).map(userToListItem).join('');
   }
 
   // Remove user by email
@@ -69,10 +80,11 @@
 
   // Handle adding a user
   userEditForm.onsubmit = function (e) {
-    addUserFromForm(userEditForm);
-    redrawUsers();
-    clearInputs(userEditForm);
-
+    if (addUserFromForm(userEditForm)) {
+      redrawUsers();
+      clearInputs(userEditForm);
+    }
+    
     return false;
   };
 
@@ -89,6 +101,12 @@
   // Handle sorting the user list
   document.querySelector('.users-list-sort-order').onchange = function (e) {
     sortOrder = Number(e.target.value);
+    redrawUsers();
+  };
+
+  // Handle filtering the user list
+  document.querySelector('.users-list-filter').oninput = function (e) {
+    usersSearchTerm = e.target.value;
     redrawUsers();
   };
 

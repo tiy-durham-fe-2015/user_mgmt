@@ -30,6 +30,10 @@ function User(spec) {
 
       email: spec.email,
 
+      fullName: function () {
+        return user.firstName + ' ' + user.lastName;
+      },
+
       addRole: function (roleName) {
         userRoles[roleName] = true;
       },

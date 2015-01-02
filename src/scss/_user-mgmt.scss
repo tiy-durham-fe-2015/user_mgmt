@@ -20,9 +20,14 @@ input {
   border: 1px solid #DDD;
 }
 
-input:valid {
-  background: #cef1c5;
-  border: 1px solid #75d281;
+.option-bar {
+  margin-bottom: 1em;
+  text-align: right;
+}
+
+.option-input {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .styled-select {
