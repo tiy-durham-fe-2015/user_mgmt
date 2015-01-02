@@ -5,8 +5,8 @@
 body {
     font-family: sans-serif;
     line-height: 1.4em;
-    background: #FFF;
-    color: #444;
+    background: $bg-light;
+    color: $fg-light;
 }
 
 h1 { font-size: 2em; margin: .67em 0 }
@@ -25,7 +25,7 @@ p {
 }
 
 a {
-  color: #00AAEE;
+  color: $link-color;
   text-decoration: none;
 }
 
@@ -36,15 +36,11 @@ button, input, select, textarea {
 button {
   padding: 0.5em 1em;
   background: $bg-green;
-  color: #FFF;
+  color: $fg-green;
   border: 0;
-}
-
-input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px white inset;
-  border: auto;
 }
 
 input {
   padding: 0.2em;
+  border: 1px solid $border-standard;
 }
