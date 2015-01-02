@@ -13,25 +13,36 @@
 
       <div class="input-group">
         <label>First name</label>
-        <input type="text" class="first-name">
+        <input type="text" class="first-name" pattern="[A-Za-z]{1,25}" title="First name" required>
       </div>
 
       <div class="input-group">
         <label>Last name</label>
-        <input type="text" class="last-name">
+        <input type="text" class="last-name" pattern="[A-Za-z]{1,25}" title="Last name" required>
       </div>
 
       <div class="input-group">
         <label>Email</label>
-        <input type="email" class="email">
+        <input type="email" class="email" required>
       </div>
 
       <button>+ Add</button>
     </form>
 
-    <ul class="users-list">
+    <div class="users-list-container content-block">
 
-    </ul>
+      <div class="styled-select">
+        <select class="users-list-sort-order">
+          <option value="1">A-Z</option>
+          <option value="-1">Z-A</option>
+        </select>
+      </div>
+
+      <ul class="users-list">
+
+      </ul>
+    </div>
+
   </main>
 
   <!-- build:js js/app.js -->

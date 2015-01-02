@@ -1,11 +1,11 @@
 /*
   Add roles to users via a textarea/textbox
 */
-
 (function () {
   var users = UserStore(),
     userEditForm = document.querySelector('form.edit-user'),
-    usersList = document.querySelector('.users-list');
+    usersList = document.querySelector('.users-list'),
+    sortOrder = 1;
 
   function escapeHTML(str) {
     var tagsToReplace = {
@@ -41,10 +41,7 @@
     });
   }
 
-  function compareEmails(user1, user2) {
-    return (user1.email > user2.email) ? 1 : -1;
-  }
-
+  // Redraw the users list
   function redrawUsers() {
     function userToListItem(user) {
       return '<li class="users-list-item">' +
@@ -55,14 +52,22 @@
         '</li>';
     }
 
+    function compareUserEmails(user1, user2) {
+      return (user1.email > user2.email) ? sortOrder : -sortOrder;
+    }
+
     document.querySelector('.users-list').innerHTML =
-      users.query().sort(compareEmails).map(userToListItem).join('');
+      users.query().sort(compareUserEmails).map(userToListItem).join('');
   }
 
-  function removeUser(email) {
+  // Remove user by email
+  function removeUserByEmail(email) {
     users.remove(User({ email: email }));
   }
 
+  // Events /////////////////////////////////////////
+
+  // Handle adding a user
   userEditForm.onsubmit = function (e) {
     addUserFromForm(userEditForm);
     redrawUsers();
@@ -71,13 +76,20 @@
     return false;
   };
 
+  // Handle deleting a user
   usersList.onclick = function (e) {
     if (e.target.classList.contains('remove-user')) {
-      removeUser(e.target.dataset.email);
+      removeUserByEmail(e.target.dataset.email);
       redrawUsers();
-      
+
       return false;
     }
+  };
+
+  // Handle sorting the user list
+  document.querySelector('.users-list-sort-order').onchange = function (e) {
+    sortOrder = Number(e.target.value);
+    redrawUsers();
   };
 
 })();
