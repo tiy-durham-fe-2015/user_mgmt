@@ -29,6 +29,18 @@
     users.add(User(userSpec));
   }
 
+  function eachNode(nodes, callback) {
+    for (var i = 0; i < nodes.length; ++i) {
+      callback(nodes[i]);
+    }
+  }
+
+  function clearInputs(form) {
+    eachNode(form.querySelectorAll('input, textarea'), function (node) {
+      node.value = '';
+    });
+  }
+
   function compareEmails(user1, user2) {
     return (user1.email > user2.email) ? 1 : -1;
   }
@@ -49,6 +61,8 @@
   userEditForm.onsubmit = function (e) {
     addUserFromForm(userEditForm);
     redrawUsers();
+    clearInputs(userEditForm);
+
     return false;
   };
 
