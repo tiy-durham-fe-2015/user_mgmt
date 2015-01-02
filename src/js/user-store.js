@@ -1,7 +1,7 @@
 function UserStore() {
   // Get a new object store
   var users = ObjectStore();
-  
+
   /**
    * queryByRole function - returns all users that are in a given role
    *
@@ -12,7 +12,7 @@ function UserStore() {
     return users.query().filter(function (user) {
       return user.isInRole(roleName);
     });
-  }
+  };
 
   // haveSameDomain tests to see if every user has the same
   // email domain
@@ -23,7 +23,7 @@ function UserStore() {
     return allUsers.length && allUsers.every(function (user) {
       return emailDomain(user.email) === firstUserEmailDomain;
     });
-  }
+  };
 
   // emailDomain returns the domain portion of an email
   function emailDomain(email) {

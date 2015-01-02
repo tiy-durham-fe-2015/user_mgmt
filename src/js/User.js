@@ -31,7 +31,7 @@ function User(spec) {
       email: spec.email,
 
       addRole: function (roleName) {
-        return userRoles[roleName] = true;
+        userRoles[roleName] = true;
       },
 
       removeRole: function (roleName) {

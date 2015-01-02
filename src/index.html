@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- build:css css/style.css -->
+  <link rel="stylesheet" href="css/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+
+  <main class="main-content">
+    <form class="edit-user" method="GET" action="#">
+      <h1>Add User</h1>
+
+      <div class="input-group">
+        <label>First name</label>
+        <input type="text" class="first-name">
+      </div>
+
+      <div class="input-group">
+        <label>Last name</label>
+        <input type="text" class="last-name">
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" class="email">
+      </div>
+
+      <button>+ Add</button>
+    </form>
+
+    <ul class="users-list">
+
+    </ul>
+  </main>
+
+  <!-- build:js js/app.js -->
+  <script src="js/object-store.js"></script>
+  <script src="js/user-role.js"></script>
+  <script src="js/user-store.js"></script>
+  <script src="js/user.js"></script>
+  <script src="js/user-management-ui.js"></script>
+  <!-- endbuild -->
+</body>
+</html>
