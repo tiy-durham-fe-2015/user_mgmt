@@ -1,0 +1,21 @@
+.users-list-item {
+  background: #F5F5F5;
+  border: 1px solid #EEE;
+  padding: 1em;
+  margin-bottom: 0.5em;
+
+  &:after {
+    content: ' ';
+    display: block;
+    clear: both;
+  }
+
+  .first-name, .last-name, .email {
+    display: inline-block;
+    margin-right: 0.5em;
+  }
+
+  .email {
+    float: right;
+  }
+}

@@ -1,43 +1,4 @@
 @import 'reset';
 @import 'defaults';
-
-/*
-  <form class="edit-user" method="GET" action="#">
-    <h1>Add User</h1>
-
-    <div class="input-group">
-      <label>First name</label>
-      <input type="text" class="first-name">
-    </div>
-
-    <div class="input-group">
-      <label>Last name</label>
-      <input type="text" class="last-name">
-    </div>
-
-    <div class="input-group">
-      <label>Email</label>
-      <input type="email" class="email">
-    </div>
-
-    <button>+ Add</button>
-  </form>
-
-  <ul class="users-list">
-
-  </ul>
-*/
-
-.main-content {
-  padding: 2em;
-  max-width: 800px;
-  margin: auto;
-}
-
-.input-group {
-  margin-bottom: 1em;
-
-  label {
-    display: block;
-  }
-}
+@import 'user-mgmt';
+@import 'user-components';
