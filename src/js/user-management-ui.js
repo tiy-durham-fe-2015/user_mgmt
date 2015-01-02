@@ -29,6 +29,10 @@
     users.add(User(userSpec));
   }
 
+  function compareEmails(user1, user2) {
+    return (user1.email > user2.email) ? 1 : -1;
+  }
+
   function redrawUsers() {
     function userToListItem(user) {
       return '<li class="users-list-item">' +
@@ -39,7 +43,7 @@
     }
 
     document.querySelector('.users-list').innerHTML =
-      users.query().map(userToListItem).join('');
+      users.query().sort(compareEmails).map(userToListItem).join('');
   }
 
   userEditForm.onsubmit = function (e) {
