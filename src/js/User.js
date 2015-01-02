@@ -19,5 +19,33 @@
  * @return {user}
  */
 function User(spec) {
-  // TODO: Implement user and get unit tests passing
+  // userRoles is a hash-table of roles
+  var userRoles = { },
+
+    // user is the new user object
+    user = {
+      firstName: spec.firstName,
+
+      lastName: spec.lastName,
+
+      email: spec.email,
+
+      addRole: function (roleName) {
+        return userRoles[roleName] = true;
+      },
+
+      removeRole: function (roleName) {
+        delete userRoles[roleName];
+      },
+
+      isInRole: function (roleName) {
+        return !!userRoles[roleName];
+      },
+
+      equal: function (otherUser) {
+        return otherUser.email === user.email;
+      }
+    };
+
+  return user;
 }

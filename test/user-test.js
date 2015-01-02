@@ -1,13 +1,13 @@
 /*
   Unit tests for the User class.
 */
-function makeUser() {
-  return User({
-    firstName: 'Chris',
-    lastName: 'Davies',
-    email: 'chris.davies@example.com'
-  });
-}
+QUnit.test('users with the same email should be equal', function (assert) {
+  var user1 = makeUser(),
+    user2 = makeUser('Joe', 'Shmo', 'js@example.com');
+
+  assert.ok(!user1.equal(user2));
+  assert.ok(user1.equal(makeUser()));
+});
 
 QUnit.test('add role puts user in role', function(assert) {
   var user = makeUser(),
