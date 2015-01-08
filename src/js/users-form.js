@@ -3,7 +3,7 @@ function UsersForm(form, usersStore, usersUpdated) {
 
   // Handle adding a user
   form.onsubmit = function (e) {
-    if (usersStore.add(toUser())) {
+    if (usersStore.add(getUserFromForm())) {
       clearInputs();
       focusFirstInput();
       usersUpdated();
@@ -13,7 +13,7 @@ function UsersForm(form, usersStore, usersUpdated) {
   };
 
   // Extract the form inputs into a user object
-  function toUser() {
+  function getUserFromForm() {
     var userSpec = {
       firstName: form.querySelector('.first-name').value,
       lastName: form.querySelector('.last-name').value,
