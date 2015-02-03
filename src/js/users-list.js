@@ -63,7 +63,8 @@ function UsersList(rootElement, usersStore, usersUpdated) {
     }
 
     function compareUserNames(user1, user2) {
-      return (user1.fullName() > user2.fullName()) ? sortOrder : -sortOrder;
+      return (user1.fullName().toLowerCase() > user2.fullName().toLowerCase())
+        ? sortOrder : -sortOrder;
     }
 
     function contains(str, subString) {

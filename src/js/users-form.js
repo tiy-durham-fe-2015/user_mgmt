@@ -7,6 +7,8 @@ function UsersForm(form, usersStore, usersUpdated) {
       clearInputs();
       focusFirstInput();
       usersUpdated();
+    } else {
+      alert('There is already a user with that email!');
     }
 
     return false;
